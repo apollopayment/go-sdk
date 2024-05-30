@@ -2,7 +2,7 @@ package orphans
 
 import (
 	"context"
-	"apollopayment_sdk/types/responses"
+	"github.com/apollopayment/go-sdk/types/responses"
 )
 
 func (d *Domain) GetDeposit(ctx context.Context, orphanId string) responses.BaseResponseGeneric[*responses.OrphanTransaction] {

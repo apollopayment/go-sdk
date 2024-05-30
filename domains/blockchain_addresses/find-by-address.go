@@ -2,7 +2,7 @@ package blockchain_addresses
 
 import (
 	"context"
-	"apollopayment_sdk/types/responses"
+	"github.com/apollopayment/go-sdk/types/responses"
 )
 
 func (d *Domain) FindByAddress(ctx context.Context, address string) responses.BaseResponseGeneric[*responses.ExtendedAddress] {

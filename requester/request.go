@@ -5,9 +5,9 @@ import (
 	"context"
 	"encoding/json"
 	"fmt"
+	"github.com/apollopayment/go-sdk/types/responses"
 	"io"
 	"net/http"
-	"apollopayment_sdk/types/responses"
 )
 
 func (r *Requester) Request(ctx context.Context, method string, payload interface{}, response interface{}) responses.BaseResponse {

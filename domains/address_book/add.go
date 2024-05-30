@@ -2,8 +2,8 @@ package address_book
 
 import (
 	"context"
-	"apollopayment_sdk/types/requests"
-	"apollopayment_sdk/types/responses"
+	"github.com/apollopayment/go-sdk/types/requests"
+	"github.com/apollopayment/go-sdk/types/responses"
 )
 
 func (d *Domain) Add(ctx context.Context, payload requests.AddAddressBook) responses.BaseResponseGeneric[*responses.AddressBookAddress] {

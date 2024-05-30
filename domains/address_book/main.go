@@ -1,6 +1,6 @@
 package address_book
 
-import "apollopayment_sdk/requester"
+import "github.com/apollopayment/go-sdk/requester"
 
 type Domain struct {
 	requester *requester.Requester

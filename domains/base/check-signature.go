@@ -2,7 +2,7 @@ package base
 
 import (
 	"context"
-	"apollopayment_sdk/types/responses"
+	"github.com/apollopayment/go-sdk/types/responses"
 )
 
 func (d *Domain) CheckSignature(ctx context.Context) responses.BaseResponseGeneric[*responses.CheckSignResponse] {

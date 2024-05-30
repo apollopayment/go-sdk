@@ -2,8 +2,8 @@ package invoices
 
 import (
 	"context"
-	"apollopayment_sdk/types/requests"
-	"apollopayment_sdk/types/responses"
+	"github.com/apollopayment/go-sdk/types/requests"
+	"github.com/apollopayment/go-sdk/types/responses"
 )
 
 func (d *Domain) MakeInvoice(ctx context.Context, payload requests.CreateInvoice) responses.BaseResponseGeneric[*responses.Invoice] {

@@ -2,8 +2,8 @@ package advanced_account
 
 import (
 	"context"
-	"apollopayment_sdk/types/requests"
-	"apollopayment_sdk/types/responses"
+	"github.com/apollopayment/go-sdk/types/requests"
+	"github.com/apollopayment/go-sdk/types/responses"
 )
 
 func (d *Domain) AdvancedBalanceDepositAddress(ctx context.Context, payload requests.AdvancedBalanceDepositAddress) responses.BaseResponseGeneric[*responses.AdvancedBalanceDepositAddress] {

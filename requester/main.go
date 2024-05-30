@@ -1,6 +1,6 @@
 package requester
 
-import "apollopayment_sdk/noncer"
+import "github.com/apollopayment/go-sdk/noncer"
 
 type Requester struct {
 	publicKey string

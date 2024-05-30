@@ -2,7 +2,7 @@ package advanced_account
 
 import (
 	"context"
-	"apollopayment_sdk/types/responses"
+	"github.com/apollopayment/go-sdk/types/responses"
 )
 
 func (d *Domain) AdvancedBalance(ctx context.Context, advancedBalanceId string) responses.BaseResponseGeneric[*responses.AdvancedBalance] {

@@ -2,7 +2,7 @@ package crosschain_bridge
 
 import (
 	"context"
-	"apollopayment_sdk/types/responses"
+	"github.com/apollopayment/go-sdk/types/responses"
 )
 
 func (d *Domain) Get(ctx context.Context, crosschainBridgeId string) responses.BaseResponseGeneric[*responses.CrosschainBridge] {

@@ -2,8 +2,8 @@ package blockchain_addresses
 
 import (
 	"context"
-	"apollopayment_sdk/types/requests"
-	"apollopayment_sdk/types/responses"
+	"github.com/apollopayment/go-sdk/types/requests"
+	"github.com/apollopayment/go-sdk/types/responses"
 )
 
 func (d *Domain) CreatePayoutAddress(ctx context.Context, payload requests.CreatePayOutAddress) responses.BaseResponseGeneric[*responses.PayOutAddress] {

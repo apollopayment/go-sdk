@@ -2,7 +2,7 @@ package address_book
 
 import (
 	"context"
-	"apollopayment_sdk/types/responses"
+	"github.com/apollopayment/go-sdk/types/responses"
 )
 
 func (d *Domain) Remove(ctx context.Context, addressId string) responses.BaseResponse {

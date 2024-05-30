@@ -2,7 +2,7 @@ package invoices
 
 import (
 	"context"
-	"apollopayment_sdk/types/responses"
+	"github.com/apollopayment/go-sdk/types/responses"
 )
 
 func (d *Domain) GetInvoice(ctx context.Context, invoiceId string) responses.BaseResponseGeneric[*responses.Invoice] {

@@ -1,6 +1,6 @@
 package auto_swaps
 
-import "apollopayment_sdk/requester"
+import "github.com/apollopayment/go-sdk/requester"
 
 type Domain struct {
 	requester *requester.Requester

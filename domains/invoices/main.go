@@ -1,6 +1,6 @@
 package invoices
 
-import "apollopayment_sdk/requester"
+import "github.com/apollopayment/go-sdk/requester"
 
 type Domain struct {
 	requester *requester.Requester

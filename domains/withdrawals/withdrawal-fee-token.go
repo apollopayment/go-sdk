@@ -2,8 +2,8 @@ package withdrawals
 
 import (
 	"context"
-	"apollopayment_sdk/types/requests"
-	"apollopayment_sdk/types/responses"
+	"github.com/apollopayment/go-sdk/types/requests"
+	"github.com/apollopayment/go-sdk/types/responses"
 )
 
 func (d *Domain) WithdrawalFeeToken(ctx context.Context, payload requests.WithdrawalFeeToken) responses.BaseResponseGeneric[*responses.WithdrawalFeeToken] {

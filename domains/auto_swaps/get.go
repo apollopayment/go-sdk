@@ -2,7 +2,7 @@ package auto_swaps
 
 import (
 	"context"
-	"apollopayment_sdk/types/responses"
+	"github.com/apollopayment/go-sdk/types/responses"
 )
 
 func (d *Domain) Get(ctx context.Context, autoSwapId string) responses.BaseResponseGeneric[*responses.AutoSwap] {
