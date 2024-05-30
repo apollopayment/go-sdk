@@ -49,10 +49,10 @@ if !checkSignature.Success {
 	panic(checkSignature.Error)
 }
 
-if checkSignature.Result.CheckSignatureResult {
+if checkSignature.Response.CheckSignatureResult {
     fmt.Println("Signature correct")
 } else {
-    fmt.Println("Signature incorrect", checkSignature.Result.Errors)
+    fmt.Println("Signature incorrect", checkSignature.Response.Errors)
 }
 ```
 
@@ -67,7 +67,7 @@ if !availableCurrencies.Success {
     panic(availableCurrencies.Error)
 }
 
-list := *availableCurrencies.Result
+list := *availableCurrencies.Response
 
 for _, currency := range list {
 	fmt.Println("%s (%s) = %s", currency.Currency, currency.Alias, currency.PriceUSD)
@@ -94,7 +94,7 @@ if !price.Success {
     panic(price.Error)
 }
 
-fmt.Println("Price: %s", price.Result)
+fmt.Println("Price: %s", price.Response)
 ```
 
 ### Get advanced balances info
@@ -108,7 +108,7 @@ if !balance.Success {
     panic(balance.Error)
 }
 
-fmt.Println("[%s] (%s)\n\tAvalable for deposit: %s", balance.Result.AdvancedBalanceId, balance.Result.Currency, string.Join(balance.Result.AvailableCurrenciesForDeposit, ", "))
+fmt.Println("[%s] (%s)\n\tAvalable for deposit: %s", balance.Response.AdvancedBalanceId, balance.Response.Currency, string.Join(balance.Response.AvailableCurrenciesForDeposit, ", "))
 ```
 
 Or get list of advanced balances of user
@@ -120,9 +120,108 @@ if !balances.Success {
     panic(balances.Error)
 }
 
-list := *balances.Result
+list := *balances.Response
 
 for _, balance := range list {
-    fmt.Println("[%s] (%s)\n\tAvalable for deposit: %s", balance.Result.AdvancedBalanceId, balance.Result.Currency, string.Join(balance.Result.AvailableCurrenciesForDeposit, ", "))
+    fmt.Println("[%s] (%s)\n\tAvalable for deposit: %s", balance.AdvancedBalanceId, balance.Currency, string.Join(balance.AvailableCurrenciesForDeposit, ", "))
+}
+```
+
+### Create order
+
+```go
+package main
+
+import (
+	"context"
+	"errors"
+	"github.com/apollopayment/go-sdk"
+	"github.com/apollopayment/go-sdk/types/requests"
+)
+
+func main() {
+	orderLink, err := createOrder("USDT", "tron", "1000")
+	
+	if err != nil {
+		panic(err)
+	}
+	
+	//
+}
+
+func createOrder(currency, network, amount string) (string, error) {
+	ctx := context.Background()
+
+	client := apollopayment_sdk.New("__PUBLIC_KEY__", "__PRIVATE_KEY__")
+
+	advancedBalances := client.AdvancedBalance.AdvancedBalances(ctx)
+
+	if !advancedBalances.Success {
+		return "", errors.New("Error on get advanced balances list: " + advancedBalances.Error.Message)
+	}
+
+	_advancedBalances := *advancedBalances.Response
+	advancedBalance := _advancedBalances[0]
+
+	order := client.Orders.MakeOrder(ctx, requests.CreateOrder{
+		AdvancedBalanceId: advancedBalance.AdvancedBalanceId,
+		Currency:          currency,
+		Network:           network,
+		Amount:            amount,
+		ErrorWebhook:      "https://merchant.domain/webhook-url",
+		SuccessWebhook:    "https://merchant.domain/webhook-url",
+		ReturnUrl:         "https://merchant.domain",
+		Order:             "Order #1234567",
+		Description:       "Buy some item",
+	})
+
+	if !order.Success {
+		return "", errors.New("Error on create order: " + order.Error.Message)
+	}
+
+	return order.Response.Link, nil
+}
+```
+
+### Auto-swap to external address
+
+```go
+package main
+
+import (
+	"context"
+	"errors"
+	"github.com/apollopayment/go-sdk"
+	"github.com/apollopayment/go-sdk/types/requests"
+)
+
+func main() {
+	autoSwapId, err := makeWithdrawal("USDT", "tron", "TUfVHn...DDC", "100")
+	
+	if err != nil {
+		panic(err)
+	}
+	
+	// 
+}
+
+func makeWithdrawal(currency, network, address, amount string) (string, error) {
+	ctx := context.Background()
+
+	client := apollopayment_sdk.New("__PUBLIC_KEY__", "__PRIVATE_KEY__")
+
+	swap := client.AutoSwaps.Create(ctx, requests.CreateAutoSwap{
+		Address:    address,
+		Currency:   currency,
+		Network:    network,
+		AmountTo:   amount,
+		WebhookUrl: "https://merchant.domain/webhook-url",
+	})
+
+	if !swap.Success {
+		return "", errors.New("Error on make withdrawal: " + swap.Error.Message)
+	}
+
+	return swap.Response.Id, nil
 }
 ```
