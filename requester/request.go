@@ -42,8 +42,6 @@ func (r *Requester) Request(ctx context.Context, method string, payload interfac
 		return resStruct
 	}
 
-	fmt.Println("body", string(body))
-
 	url := fmt.Sprintf("https://app.apollopayment.io/api-gateway/%s", method)
 
 	req, err := http.NewRequestWithContext(ctx, "POST", url, bytes.NewReader(body))
@@ -103,8 +101,6 @@ func (r *Requester) Request(ctx context.Context, method string, payload interfac
 
 		return resStruct
 	}
-
-	fmt.Println(string(resBytes))
 
 	if err = json.Unmarshal(resBytes, &resStruct); err != nil {
 		resStruct.Success = false

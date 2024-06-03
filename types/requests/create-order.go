@@ -29,6 +29,9 @@ func (c CreateOrder) ToMap() map[string]any {
 	if c.Currency != "" {
 		payload["currency"] = c.Currency
 	}
+	if c.Network != "" {
+		payload["network"] = c.Network
+	}
 	if c.Amount != "" {
 		payload["amount"] = c.Amount
 	}

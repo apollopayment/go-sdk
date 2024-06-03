@@ -29,7 +29,7 @@ func (a AddressTransactions) ToMap() map[string]any {
 	}
 
 	if a.Status != nil && len(a.Status) > 0 {
-		payload["networks"] = a.Status
+		payload["status"] = a.Status
 	}
 
 	return payload
