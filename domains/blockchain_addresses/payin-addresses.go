@@ -5,10 +5,10 @@ import (
 	"github.com/apollopayment/go-sdk/types/responses"
 )
 
-func (d *Domain) PayInAddresses(ctx context.Context, advancedBalanceId string) responses.BaseResponseGeneric[*[]responses.PayInAddress] {
+func (d *Domain) PayInAddresses(ctx context.Context) responses.BaseResponseGeneric[*[]responses.PayInAddress] {
 	res := []responses.PayInAddress{}
 
-	_res := d.requester.Request(ctx, "account-addresses", map[string]string{"advancedBalanceId": advancedBalanceId}, &res)
+	_res := d.requester.Request(ctx, "account-addresses", map[string]string{}, &res)
 
 	return responses.ConvertBase[*[]responses.PayInAddress](_res)
 }

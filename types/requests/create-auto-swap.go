@@ -6,7 +6,7 @@ type CreateAutoSwap struct {
 	Network     string `json:"network"`
 	AmountFrom  string `json:"amountFrom"`
 	AmountTo    string `json:"amountTo"`
-	FeeInAmount string `json:"feeInAmount"`
+	FeeInAmount bool   `json:"feeInAmount"`
 	WebhookUrl  string `json:"webhookUrl"`
 }
 

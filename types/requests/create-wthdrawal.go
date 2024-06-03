@@ -1,30 +1,30 @@
 package requests
 
 type CreateWithdrawal struct {
-	AdvancedBalanceId string  `json:"advancedBalanceId"`
-	AddressId         string  `json:"addressId"`
-	Address           string  `json:"address"`
-	Tag               *string `json:"tag"`
-	Amount            string  `json:"amount"`
-	FeeToken          string  `json:"feeToken"`
+	//AdvancedBalanceId string  `json:"advancedBalanceId"`
+	AddressId string  `json:"addressId"`
+	Address   string  `json:"address"`
+	Tag       *string `json:"tag"`
+	Amount    string  `json:"amount"`
+	FeeToken  string  `json:"feeToken"`
 }
 
 type CreateAsyncWithdrawal struct {
-	AdvancedBalanceId string  `json:"advancedBalanceId"`
-	AddressId         string  `json:"addressId"`
-	Address           string  `json:"address"`
-	Tag               *string `json:"tag"`
-	Amount            string  `json:"amount"`
-	FeeToken          string  `json:"feeToken"`
-	WebhookUrl        string  `json:"webhookUrl"`
+	//AdvancedBalanceId string  `json:"advancedBalanceId"`
+	AddressId  string  `json:"addressId"`
+	Address    string  `json:"address"`
+	Tag        *string `json:"tag"`
+	Amount     string  `json:"amount"`
+	FeeToken   string  `json:"feeToken"`
+	WebhookUrl string  `json:"webhookUrl"`
 }
 
 func (c CreateWithdrawal) ToMap() map[string]any {
 	payload := map[string]any{}
 
-	if c.AdvancedBalanceId != "" {
-		payload["advancedBalanceId"] = c.AdvancedBalanceId
-	}
+	//if c.AdvancedBalanceId != "" {
+	//	payload["advancedBalanceId"] = c.AdvancedBalanceId
+	//}
 	if c.AddressId != "" {
 		payload["addressId"] = c.AddressId
 	}
@@ -46,9 +46,9 @@ func (c CreateWithdrawal) ToMap() map[string]any {
 func (c CreateAsyncWithdrawal) ToMap() map[string]any {
 	payload := map[string]any{}
 
-	if c.AdvancedBalanceId != "" {
-		payload["advancedBalanceId"] = c.AdvancedBalanceId
-	}
+	//if c.AdvancedBalanceId != "" {
+	//	payload["advancedBalanceId"] = c.AdvancedBalanceId
+	//}
 	if c.AddressId != "" {
 		payload["addressId"] = c.AddressId
 	}

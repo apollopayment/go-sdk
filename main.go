@@ -1,6 +1,7 @@
 package apollopayment_sdk
 
 import (
+	"context"
 	"github.com/apollopayment/go-sdk/domains/address_book"
 	"github.com/apollopayment/go-sdk/domains/advanced_account"
 	"github.com/apollopayment/go-sdk/domains/auto_swaps"
@@ -39,7 +40,7 @@ type Client struct {
 func New(public, private string) *Client {
 	_requester := requester.New(public, private)
 
-	return &Client{
+	client := &Client{
 		noncer: noncer.New(),
 
 		AddressBook:         address_book.New(_requester),
@@ -56,4 +57,16 @@ func New(public, private string) *Client {
 		Webhooks:            webhooks.New(_requester),
 		Withdrawals:         withdrawals.New(_requester),
 	}
+
+	advancedBalances := client.AdvancedBalance.AdvancedBalances(context.Background())
+
+	if advancedBalances.Success {
+		_advancedBalanced := *advancedBalances.Response
+
+		for _, balance := range _advancedBalanced {
+			_requester.SetAdvancedBalance(balance.AdvancedBalanceId)
+		}
+	}
+
+	return client
 }

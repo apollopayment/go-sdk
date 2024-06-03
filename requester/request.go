@@ -26,6 +26,7 @@ func (r *Requester) Request(ctx context.Context, method string, payload interfac
 		return resStruct
 	}
 
+	mapPayload["advancedBalanceId"] = r.advancedBalanceId
 	mapPayload["nonce"] = r.noncer.GetNonce()
 
 	sign, body, err := r.MakeSignFromStruct(mapPayload)

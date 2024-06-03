@@ -1,20 +1,20 @@
 package requests
 
 type CrosschainSwap struct {
-	AdvancedBalanceId string `json:"advancedBalanceId"`
-	ClientId          string `json:"clientId"`
-	AddressFromId     string `json:"addressFromId"`
-	AddressToId       string `json:"addressToId"`
-	FeeToken          string `json:"feeToken"`
-	WebhookUrl        string `json:"webhookUrl"`
+	//AdvancedBalanceId string `json:"advancedBalanceId"`
+	ClientId      string `json:"clientId"`
+	AddressFromId string `json:"addressFromId"`
+	AddressToId   string `json:"addressToId"`
+	FeeToken      string `json:"feeToken"`
+	WebhookUrl    string `json:"webhookUrl"`
 }
 
 func (c CrosschainSwap) ToMap() map[string]any {
 	payload := map[string]any{}
 
-	if c.AdvancedBalanceId != "" {
-		payload["advancedBalanceId"] = c.AdvancedBalanceId
-	}
+	//if c.AdvancedBalanceId != "" {
+	//	payload["advancedBalanceId"] = c.AdvancedBalanceId
+	//}
 	if c.ClientId != "" {
 		payload["clientId"] = c.ClientId
 	}

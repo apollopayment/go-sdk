@@ -1,28 +1,28 @@
 package requests
 
 type CreateInvoice struct {
-	AdvancedBalanceId string     `json:"advancedBalanceId"`
-	ExternalId        string     `json:"externalId"`
-	Order             string     `json:"order"`
-	Description       string     `json:"description"`
-	Currency          string     `json:"currency"`
-	Amount            string     `json:"amount"`
-	IncludeFee        bool       `json:"includeFee"`
-	AdditionalFees    []string   `json:"additionalFees"`
-	InsurancePercent  string     `json:"insurancePercent"`
-	SlippagePercent   string     `json:"slippagePercent"`
-	WebhookURL        string     `json:"webhookURL"`
-	ReturnURL         string     `json:"returnURL"`
-	Lifetime          int        `json:"lifetime"`
-	Currencies        [][]string `json:"currencies"`
+	//AdvancedBalanceId string     `json:"advancedBalanceId"`
+	ExternalId       string     `json:"externalId"`
+	Order            string     `json:"order"`
+	Description      string     `json:"description"`
+	Currency         string     `json:"currency"`
+	Amount           string     `json:"amount"`
+	IncludeFee       bool       `json:"includeFee"`
+	AdditionalFees   []string   `json:"additionalFees"`
+	InsurancePercent string     `json:"insurancePercent"`
+	SlippagePercent  string     `json:"slippagePercent"`
+	WebhookURL       string     `json:"webhookURL"`
+	ReturnURL        string     `json:"returnURL"`
+	Lifetime         int        `json:"lifetime"`
+	Currencies       [][]string `json:"currencies"`
 }
 
 func (c CreateInvoice) ToMap() map[string]any {
 	payload := map[string]any{}
 
-	if c.AdvancedBalanceId != "" {
-		payload["advancedBalanceId"] = c.AdvancedBalanceId
-	}
+	//if c.AdvancedBalanceId != "" {
+	//	payload["advancedBalanceId"] = c.AdvancedBalanceId
+	//}
 	if c.ExternalId != "" {
 		payload["externalId"] = c.ExternalId
 	}

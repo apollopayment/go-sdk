@@ -99,32 +99,16 @@ fmt.Println("Price: %s", price.Response)
 
 ### Get advanced balances info
 
-Get info about advanced balance by its id
+Get info about advanced balance
 
 ```go
-balance := client.AdvancedBalance.AdvancedBalance(context.Background(), balanceId)
+balance := client.AdvancedBalance.AdvancedBalance(context.Background())
 
 if !balance.Success {
     panic(balance.Error)
 }
 
 fmt.Println("[%s] (%s)\n\tAvalable for deposit: %s", balance.Response.AdvancedBalanceId, balance.Response.Currency, string.Join(balance.Response.AvailableCurrenciesForDeposit, ", "))
-```
-
-Or get list of advanced balances of user
-
-```go
-balances := client.AdvancedBalance.AdvancedBalance(context.Background(), balanceId)
-
-if !balances.Success {
-    panic(balances.Error)
-}
-
-list := *balances.Response
-
-for _, balance := range list {
-    fmt.Println("[%s] (%s)\n\tAvalable for deposit: %s", balance.AdvancedBalanceId, balance.Currency, string.Join(balance.AvailableCurrenciesForDeposit, ", "))
-}
 ```
 
 ### Create order
@@ -154,17 +138,7 @@ func createOrder(currency, network, amount string) (string, error) {
 
 	client := apollopayment_sdk.New("__PUBLIC_KEY__", "__PRIVATE_KEY__")
 
-	advancedBalances := client.AdvancedBalance.AdvancedBalances(ctx)
-
-	if !advancedBalances.Success {
-		return "", errors.New("Error on get advanced balances list: " + advancedBalances.Error.Message)
-	}
-
-	_advancedBalances := *advancedBalances.Response
-	advancedBalance := _advancedBalances[0]
-
 	order := client.Orders.MakeOrder(ctx, requests.CreateOrder{
-		AdvancedBalanceId: advancedBalance.AdvancedBalanceId,
 		Currency:          currency,
 		Network:           network,
 		Amount:            amount,

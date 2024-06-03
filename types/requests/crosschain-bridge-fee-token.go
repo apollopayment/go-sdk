@@ -1,19 +1,19 @@
 package requests
 
 type CrosschainBridgeFeeToken struct {
-	AdvancedBalanceId string `json:"advancedBalanceId"`
-	Currency          string `json:"currency"`
-	NetworkFrom       string `json:"networkFrom"`
-	NetworkTo         string `json:"networkTo"`
-	Amount            string `json:"amount"`
+	//AdvancedBalanceId string `json:"advancedBalanceId"`
+	Currency    string `json:"currency"`
+	NetworkFrom string `json:"networkFrom"`
+	NetworkTo   string `json:"networkTo"`
+	Amount      string `json:"amount"`
 }
 
 func (c CrosschainBridgeFeeToken) ToMap() map[string]any {
 	payload := map[string]any{}
 
-	if c.AdvancedBalanceId != "" {
-		payload["advancedBalanceId"] = c.AdvancedBalanceId
-	}
+	//if c.AdvancedBalanceId != "" {
+	//	payload["advancedBalanceId"] = c.AdvancedBalanceId
+	//}
 	if c.Currency != "" {
 		payload["currency"] = c.Currency
 	}

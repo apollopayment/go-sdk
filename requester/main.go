@@ -7,6 +7,8 @@ type Requester struct {
 	secretKey string
 
 	noncer *noncer.Noncer
+
+	advancedBalanceId string
 }
 
 func New(public, secret string) *Requester {
@@ -16,4 +18,8 @@ func New(public, secret string) *Requester {
 
 		noncer: noncer.New(),
 	}
+}
+
+func (r *Requester) SetAdvancedBalance(adv string) {
+	r.advancedBalanceId = adv
 }
