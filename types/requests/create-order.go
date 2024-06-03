@@ -46,6 +46,18 @@ func (c CreateOrder) ToMap() map[string]any {
 	}
 	if c.Lifetime > 0 {
 		payload["lifetime"] = c.Lifetime
+	} else {
+		switch c.Network {
+		case "ripple", "bsc", "tron", "ethereum", "fantom":
+			payload["lifetime"] = 1800
+			break
+		case "litecoin":
+			payload["lifetime"] = 3600
+			break
+		case "bitcoin", "bitcoincash":
+			payload["lifetime"] = 7200
+			break
+		}
 	}
 
 	payload["checkRisks"] = c.CheckRisks
