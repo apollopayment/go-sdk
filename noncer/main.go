@@ -1,18 +1,18 @@
 package noncer
 
 import (
-	"math/rand"
 	"sync"
+	"time"
 )
 
 type Noncer struct {
 	mx *sync.Mutex
 
-	nonce uint32
+	nonce int64
 }
 
 func New() *Noncer {
-	initialNonce := rand.Uint32()
+	initialNonce := time.Now().UnixMilli()
 
 	return &Noncer{
 		mx:    &sync.Mutex{},
@@ -20,7 +20,7 @@ func New() *Noncer {
 	}
 }
 
-func (n *Noncer) GetNonce() uint32 {
+func (n *Noncer) GetNonce() int64 {
 	n.mx.Lock()
 	defer n.mx.Unlock()
 
