@@ -9,7 +9,7 @@ import (
 func (d *Domain) GetUserAddress(ctx context.Context, payload requests.GetUserAddress) responses.BaseResponseGeneric[*responses.PersonalAddress] {
 	var res responses.PersonalAddress
 
-	_res := d.requester.Request(ctx, "personal_addresses/get-user-address", payload.ToMap(), &res)
+	_res := d.requester.Request(ctx, "personal-addresses/get-user-address", payload.ToMap(), &res)
 
 	return responses.ConvertBase[*responses.PersonalAddress](_res)
 }

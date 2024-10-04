@@ -8,7 +8,7 @@ import (
 func (d *Domain) Get(ctx context.Context, autoSwapId string) responses.BaseResponseGeneric[*responses.AutoSwap] {
 	var res responses.AutoSwap
 
-	_res := d.requester.Request(ctx, "auto_swaps/get", map[string]string{"id": autoSwapId}, &res)
+	_res := d.requester.Request(ctx, "auto-swaps/get", map[string]string{"id": autoSwapId}, &res)
 
 	return responses.ConvertBase[*responses.AutoSwap](_res)
 }
